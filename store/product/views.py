@@ -1,6 +1,10 @@
 from django.shortcuts import render
-from http.client import HTTPResponse
+
+from .models import Product
 
 
 def test(request):
-    return HTTPResponse("hello")
+    context = {
+        "products": Product.objects.all()
+    }
+    return render(request, 'products/product_list.html', context)
